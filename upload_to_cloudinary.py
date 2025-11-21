@@ -18,6 +18,9 @@ IMAGE_PATH = os.path.join(STATIC_DIR, "last_visitor.jpg")
 result = cloudinary.uploader.upload(
     IMAGE_PATH,
     folder="smart-doorbell-lab",  # optional logical folder name
+    public_id="last_visitor",      # <-- always upload with same ID
+    overwrite=True,                # <-- overwrite existing image
+    invalidate=True,               # <-- (optional) clear cached copies
 )
 
 # 4. Print the secure URL returned by Cloudinary
