@@ -21,7 +21,7 @@
       Last press: <strong>{{ last_event.time_str }}</strong><br>
       ({{ last_event.age }} seconds ago)
     </p>
-    <img src="{{ url_for('static', filename='last_visitor.jpg') }}">
+    <img src="https://res.cloudinary.com/dhnqvdn8p/image/upload/v1763844835/smart-doorbell-lab/last_visitor.jpg">
   {% else %}
     <p>No doorbell presses recorded yet.</p>
   {% endif %}
