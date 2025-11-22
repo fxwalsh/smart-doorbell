@@ -15,14 +15,28 @@ STATIC_DIR = os.path.join(BASE_DIR, "static")
 IMAGE_PATH = os.path.join(STATIC_DIR, "last_visitor.jpg")
 
 # 3. Upload the image
-result = cloudinary.uploader.upload(
-    IMAGE_PATH,
-    folder="smart-doorbell-lab",  # optional logical folder name
-    public_id="last_visitor",      # <-- always upload with same ID
-    overwrite=True,                # <-- overwrite existing image
-    invalidate=True,               # <-- (optional) clear cached copies
-)
+def upload_image(image_path,
+                 folder = "smart-doorbell-lab",
+                 public_id = "last_visitor"):
+    result = cloudinary.uploader.upload(
+        image_path,
+        folder="smart-doorbell-lab",  # optional logical folder name
+        public_id="last_visitor",      # <-- always upload with same ID
+        overwrite=True,                # <-- overwrite existing image
+        invalidate=True,               # <-- (optional) clear cached copies
+    )
+    url = result["secure_url"]
+    return url
 
-# 4. Print the secure URL returned by Cloudinary
-print("Upload complete.")
-print("Public URL:", result["secure_url"])
+
+def main():
+    """
+    Allow this script to be run directly from the command line.
+    """
+    url = upload_image(IMAGE_PATH)
+    # 4. Print the secure URL returned by Cloudinary
+    print("Upload complete.")
+    print(f"Public URL:{url}")
+
+if __name__ == "__main__":
+    main()
